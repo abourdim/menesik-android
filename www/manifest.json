@@ -1,0 +1,30 @@
+{
+  "name": "menesik — مناسك الحج",
+  "short_name": "menesik",
+  "description": "دليل مناسك الحج — Guide complet du Hajj — Complete Hajj Guide",
+  "start_url": "/menesik/",
+  "scope": "/menesik/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1b4332",
+  "theme_color": "#1b4332",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='32' fill='%231b4332'/><polygon points='96,20 108,60 150,60 117,84 129,124 96,100 63,124 75,84 42,60 84,60' fill='%23d4a843'/><circle cx='96' cy='96' r='30' fill='none' stroke='%23d4a843' stroke-width='3'/></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='80' fill='%231b4332'/><polygon points='256,50 280,160 390,160 305,220 335,330 256,270 177,330 207,220 122,160 232,160' fill='%23d4a843'/><circle cx='256' cy='256' r='80' fill='none' stroke='%23d4a843' stroke-width='6'/></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ],
+  "shortcuts": [
+    { "name": "الحج — Hajj", "url": "/menesik/index.html" },
+    { "name": "العمرة — Umrah", "url": "/menesik/umrah.html" },
+    { "name": "القائمة — Checklist", "url": "/menesik/checklist.html" },
+    { "name": "الأدعية — Duas", "url": "/menesik/dua.html" }
+  ]
+}

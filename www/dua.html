@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أدعية الحج — Duas du Hajj · menesik</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1b4332">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a1108;--gold:#b8860b;--gold-lt:#d4a843;--gold-pale:#fef9ed;--gold-xlt:#fdf3d0;--green:#1b4332;--green-md:#2d6a4f;--green-lt:#d8f0e4;--green-dark:#122b22;--parch:#faf6ec;--parch-dk:#f0e6cc;--surface:#fff;--surface2:#f7f3ea;--border:rgba(184,134,11,.18);--border-md:rgba(184,134,11,.42);--muted:#6b5530;--hint:#a08040;}
+[data-theme="dark"]{--ink:#e8e0cc;--gold:#d4a843;--gold-lt:#e8c060;--gold-pale:rgba(184,134,11,.1);--gold-xlt:rgba(184,134,11,.07);--green:#2d6a4f;--green-md:#3d8a6a;--green-lt:rgba(45,106,79,.2);--green-dark:#0e2318;--parch:#181410;--parch-dk:#201c14;--surface:#232018;--surface2:#1a1710;--border:rgba(212,168,67,.14);--border-md:rgba(212,168,67,.28);--muted:#a08860;--hint:#604a28;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Naskh Arabic',serif;background:var(--parch);color:var(--ink);line-height:1.85;overflow-x:hidden;transition:background .3s,color .3s}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='rgba(184,134,11,0.06)' stroke-width='0.6'%3E%3Cpolygon points='40,5 47,25 68,25 52,38 58,58 40,46 22,58 28,38 12,25 33,25'/%3E%3C/g%3E%3C/svg%3E");background-size:80px 80px}
+
+.topbar{position:sticky;top:0;z-index:50;background:rgba(18,43,34,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(184,134,11,.2);display:flex;align-items:center;height:50px;padding:0 1rem;gap:.5rem}
+.page-links{display:flex;gap:2px}
+.page-links a{padding:.35rem .7rem;font-size:.76rem;color:rgba(255,255,255,.5);text-decoration:none;border-radius:6px;white-space:nowrap;transition:background .15s,color .15s}
+.page-links a:hover{background:rgba(212,168,67,.15);color:var(--gold-lt)}
+.page-links a.current{background:rgba(212,168,67,.2);color:var(--gold-lt);font-weight:500}
+.tb-right{margin-right:0;margin-left:auto;display:flex;gap:.4rem;align-items:center}
+.ctrl-btn{width:32px;height:32px;background:rgba(255,255,255,.07);border:1px solid rgba(184,134,11,.25);border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff}
+.ctrl-btn:hover{background:rgba(184,134,11,.2)}
+.ctrl-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round}
+
+.hero{position:relative;z-index:2;background:var(--green-dark);padding:3.5rem 1.5rem 3rem;text-align:center;overflow:hidden}
+.hero-ring{position:absolute;border-radius:50%;border:1px solid rgba(184,134,11,.08);top:50%;left:50%;transform:translate(-50%,-50%);animation:pulse 7s ease-in-out infinite}
+.hero-ring:nth-child(1){width:180px;height:180px}
+.hero-ring:nth-child(2){width:360px;height:360px;animation-delay:1.2s}
+.hero-ring:nth-child(3){width:560px;height:560px;animation-delay:2.4s}
+@keyframes pulse{0%,100%{opacity:.35;transform:translate(-50%,-50%) scale(1)}50%{opacity:.8;transform:translate(-50%,-50%) scale(1.03)}}
+.bismillah{font-family:'Amiri',serif;font-size:clamp(1.2rem,3vw,1.9rem);color:var(--gold-lt);display:block;margin-bottom:.9rem}
+.hero h1{font-family:'Amiri',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;color:#fff;text-shadow:0 3px 24px rgba(0,0,0,.45);margin-bottom:.4rem}
+.hero-fr{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.6);direction:ltr;margin-bottom:1.2rem}
+.hero-divider{width:100px;height:1px;background:linear-gradient(to right,transparent,var(--gold-lt),transparent);margin:0 auto}
+
+/* SEARCH */
+.search-wrap{position:relative;z-index:2;background:var(--green-dark);padding:.6rem 1.5rem 1rem}
+.search-inner{max-width:540px;margin:0 auto;position:relative}
+.search-inner input{width:100%;padding:.6rem 1rem .6rem 2.4rem;background:rgba(255,255,255,.08);border:1px solid rgba(184,134,11,.3);border-radius:10px;color:#fff;font-family:'Noto Naskh Arabic',serif;font-size:.9rem;outline:none;transition:background .15s,border-color .15s}
+.search-inner input::placeholder{color:rgba(255,255,255,.32)}
+.search-inner input:focus{background:rgba(255,255,255,.13);border-color:var(--gold-lt)}
+.search-icon{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:14px;height:14px;stroke:rgba(255,255,255,.4);fill:none;stroke-width:2;stroke-linecap:round}
+
+main{position:relative;z-index:2;max-width:820px;margin:0 auto;padding:1.5rem 1.2rem 5rem}
+
+/* CATEGORY */
+.cat-section{margin-bottom:2rem}
+.cat-head{display:flex;align-items:center;gap:.7rem;margin-bottom:1rem}
+.cat-icon{width:36px;height:36px;background:var(--green);border:1.5px solid var(--gold-lt);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cat-icon svg{width:17px;height:17px;stroke:var(--gold-lt);fill:none;stroke-width:1.6;stroke-linecap:round}
+.cat-title-ar{font-family:'Amiri',serif;font-size:1.15rem;font-weight:700;color:var(--green)}
+.cat-title-fr{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.85rem;color:var(--muted);direction:ltr}
+
+/* DUA CARD */
+.dua-card{background:var(--surface);border:1px solid var(--border-md);border-radius:14px;overflow:hidden;margin-bottom:.9rem;transition:box-shadow .2s,background .3s;animation:su .5s ease both;opacity:0;transform:translateY(18px)}
+.dua-card.revealed{opacity:1;transform:none}
+.dua-card:hover{box-shadow:0 4px 20px rgba(184,134,11,.1)}
+.dua-card.hidden-dua{display:none}
+.dua-card-head{background:linear-gradient(135deg,var(--green),var(--green-md));padding:.7rem 1.1rem;display:flex;align-items:center;justify-content:space-between}
+.dua-when{font-size:.7rem;color:rgba(255,255,255,.7);letter-spacing:.06em}
+.dua-copy-btn{background:rgba(255,255,255,.12);border:none;border-radius:6px;padding:3px 8px;font-size:.68rem;color:rgba(255,255,255,.7);cursor:pointer;transition:background .15s;font-family:inherit}
+.dua-copy-btn:hover{background:rgba(255,255,255,.22);color:#fff}
+.dua-body{padding:1.1rem 1.2rem}
+.dua-arabic{font-family:'Amiri',serif;font-size:clamp(1.1rem,3vw,1.55rem);font-style:italic;color:var(--ink);line-height:2.1;direction:rtl;margin-bottom:.8rem;text-align:center}
+.dua-divider{height:1px;background:linear-gradient(to right,transparent,var(--border-md),transparent);margin:.8rem 0}
+.dua-trans{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.95rem;color:var(--muted);direction:ltr;line-height:1.75;margin-bottom:.6rem;text-align:center}
+.dua-meaning{font-size:.83rem;color:var(--hint);direction:ltr;line-height:1.7;text-align:center;font-style:italic;border-top:1px dashed var(--border);padding-top:.6rem;margin-top:.6rem}
+
+/* COPY TOAST */
+.copy-toast{position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:.5rem 1.2rem;border-radius:20px;font-size:.8rem;opacity:0;transition:opacity .2s;pointer-events:none;z-index:300}
+.copy-toast.show{opacity:1}
+
+.no-results{text-align:center;padding:3rem;color:var(--hint);font-size:.9rem;display:none}
+
+footer{position:relative;z-index:2;background:var(--green-dark);border-top:1px solid rgba(184,134,11,.2);padding:1.3rem;text-align:center}
+.footer-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.footer-links a{font-size:.75rem;color:rgba(255,255,255,.4);text-decoration:none;transition:color .15s}
+.footer-links a:hover{color:var(--gold-lt)}
+.footer-copy{font-size:.68rem;color:rgba(255,255,255,.2);margin-top:.4rem}
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:70;background:rgba(18,43,34,.97);backdrop-filter:blur(12px);border-top:1px solid rgba(184,134,11,.2);padding:.45rem 0 .35rem}
+.mobile-nav-inner{display:flex;justify-content:space-around}
+.mn-btn{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;padding:.3rem .4rem;color:rgba(255,255,255,.45);font-family:'Noto Naskh Arabic',serif;font-size:.6rem;transition:color .15s;text-decoration:none}
+.mn-btn:hover,.mn-btn.mn-on{color:var(--gold-lt)}
+.mn-btn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+@keyframes su{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@media(max-width:600px){.mobile-nav{display:block}main{padding-bottom:5rem}}
+@media print{.topbar,.search-wrap,.mobile-nav,footer{display:none!important}body::before{display:none}.dua-card{opacity:1!important;transform:none!important;break-inside:avoid}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="page-links">
+    <a href="index.html">🕌 الحج</a><a href="umrah.html">🌙 العمرة</a>
+    <a href="checklist.html">✅ قائمة</a><a href="dua.html" class="current">🤲 أدعية</a>
+  </div>
+  <div class="tb-right">
+    <button class="ctrl-btn" onclick="toggleDark()"><svg viewBox="0 0 16 16"><path d="M17 13A7 7 0 116 3a5 5 0 0011 10z"/></svg></button>
+    <button class="ctrl-btn" onclick="window.print()"><svg viewBox="0 0 16 16"><path d="M4 6V2h8v4"/><rect x="4" y="11" width="8" height="4"/><path d="M4 11H2a1 1 0 01-1-1V7a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-1 1h-2"/></svg></button>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-ring"></div><div class="hero-ring"></div><div class="hero-ring"></div>
+  <span class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</span>
+  <h1>أدعية الحج والعمرة</h1>
+  <p class="hero-fr">Supplications du Hajj & Umrah · Hajj & Umrah Duas</p>
+  <div class="hero-divider"></div>
+</div>
+
+<div class="search-wrap">
+  <div class="search-inner">
+    <svg class="search-icon" viewBox="0 0 16 16"><circle cx="6.5" cy="6.5" r="4"/><line x1="10" y1="10" x2="14" y2="14"/></svg>
+    <input type="text" id="duaSearch" placeholder="ابحث في الأدعية · Search duas..." oninput="filterDuas(this.value)" dir="auto">
+  </div>
+</div>
+
+<main>
+  <div class="no-results" id="noResults">لا توجد نتائج · No results</div>
+  <div id="duaContainer"></div>
+</main>
+
+<div class="copy-toast" id="copyToast">نُسخ · Copied!</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="index.html">🕌 الحج</a><a href="umrah.html">🌙 العمرة</a><a href="checklist.html">✅ Checklist</a>
+    <a href="https://github.com/abourdim/menesik" target="_blank">GitHub ↗</a>
+    <a href="https://www.youtube.com/watch?v=kw3UHpoJzuQ" target="_blank">Source ↗</a>
+  </div>
+  <div class="footer-copy">© 2026 abourdim · menesik · MIT License</div>
+</footer>
+
+<nav class="mobile-nav"><div class="mobile-nav-inner">
+  <a class="mn-btn" href="index.html"><svg viewBox="0 0 20 20"><path d="M10 2l2 6h6l-5 3.5 2 6L10 14l-5 3.5 2-6L2 8h6z"/></svg>الحج</a>
+  <a class="mn-btn" href="umrah.html"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l2 2"/></svg>العمرة</a>
+  <a class="mn-btn" href="checklist.html"><svg viewBox="0 0 20 20"><path d="M4 10l4 4 8-8"/><rect x="1" y="1" width="18" height="18" rx="3"/></svg>قائمة</a>
+  <a class="mn-btn mn-on" href="dua.html"><svg viewBox="0 0 20 20"><path d="M10 2c-4 0-7 2.5-7 6s2.5 5 4 6l3 2 3-2c1.5-1 4-2.5 4-6s-3-6-7-6z"/></svg>أدعية</a>
+  <button class="mn-btn" onclick="toggleDark()"><svg viewBox="0 0 20 20"><path d="M17 13A7 7 0 116 3a5 5 0 0011 10z"/></svg>وضع</button>
+</div></nav>
+
+<script>
+const DUAS = [
+  {
+    cat:'دعاء الإحرام والتلبية · Ihrâm & Talbiyah',
+    icon:'<path d="M8 2l2 6h6l-5 3.5 2 6L8 14l-5 3.5 2-6L0 8h6z"/>',
+    items:[
+      {
+        when:'عند نية الإحرام · At the intention of Ihrâm',
+        arabic:'لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لَا شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ وَالنِّعْمَةَ لَكَ وَالْمُلْكَ، لَا شَرِيكَ لَكَ',
+        trans:'Labbayk Allâhumma labbayk, labbayka lâ sharîka laka labbayk, inn al-hamda wan-ni\'mata laka wal-mulk, lâ sharîka lak',
+        meaning:'Here I am O Allah, here I am. You have no partner. Yours is all praise, blessing and sovereignty. You have no partner.'
+      },
+    ]
+  },
+  {
+    cat:'دعاء دخول المسجد الحرام · Entering the Masjid al-Haram',
+    icon:'<rect x="2" y="3" width="12" height="13" rx="1"/><path d="M8 3V1M5 6h6M5 9h6M5 12h3"/>',
+    items:[
+      {
+        when:'عند دخول المسجد الحرام · Upon entering the mosque',
+        arabic:'اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ، فَحَيِّنَا رَبَّنَا بِالسَّلَامِ، وَأَدْخِلْنَا الْجَنَّةَ دَارَ السَّلَامِ',
+        trans:'Allâhumma antas-salâm wa minkas-salâm, fa-hayyinâ rabbanâ bis-salâm, wa adkhilnal-jannata dâras-salâm',
+        meaning:'O Allah, You are Peace and from You comes peace. Greet us, our Lord, with peace, and admit us to Paradise, the abode of peace.'
+      },
+    ]
+  },
+  {
+    cat:'دعاء الطواف · Tawâf Supplication',
+    icon:'<circle cx="8" cy="8" r="6"/><path d="M8 4v4l2 2"/>',
+    items:[
+      {
+        when:'عند رؤية الكعبة أول مرة · Upon first seeing the Ka\'bah',
+        arabic:'اللَّهُمَّ زِدْ هَذَا الْبَيْتَ تَشْرِيفًا وَتَعْظِيمًا وَتَكْرِيمًا وَمَهَابَةً، وَزِدْ مَنْ شَرَّفَهُ وَكَرَّمَهُ مِمَّنْ حَجَّهُ أَوِ اعْتَمَرَهُ تَشْرِيفًا وَتَكْرِيمًا وَتَعْظِيمًا وَبِرًّا',
+        trans:'Allâhumma zid hâdhal-bayta tashrîfan wa ta\'dhîman wa takrîman wa mahâbah...',
+        meaning:'O Allah, increase this House in honour, esteem, dignity and reverence, and increase those who honour and revere it among those who perform Hajj or Umrah.'
+      },
+      {
+        when:'عند استلام الحجر الأسود · At the Black Stone',
+        arabic:'بِسْمِ اللَّهِ، اللَّهُ أَكْبَرُ',
+        trans:'Bismillâh, Allâhu Akbar',
+        meaning:'In the name of Allah, Allah is the Greatest.'
+      },
+      {
+        when:'عند الركن اليماني · At the Yemeni Corner',
+        arabic:'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ',
+        trans:'Rabbanâ âtinâ fid-dunyâ hasanatan wa fil-âkhirati hasanatan wa qinâ \'adhâban-nâr',
+        meaning:'Our Lord, grant us good in this world and good in the Hereafter, and protect us from the punishment of the Fire. (Quran 2:201)'
+      },
+    ]
+  },
+  {
+    cat:'دعاء عرفة · Dua of Arafât',
+    icon:'<path d="M8 1l2 6h6l-5 4 2 6L8 13l-5 4 2-6L0 7h6z"/>',
+    items:[
+      {
+        when:'في يوم عرفة · On the Day of Arafât — best dua',
+        arabic:'لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ',
+        trans:'Lâ ilâha ill-Allâh wahdahu lâ sharîka lah, lahul-mulku wa lahul-hamd, wa huwa \'alâ kulli shay\'in qadîr',
+        meaning:'There is no god but Allah alone, with no partner. His is the dominion and His is the praise, and He has power over all things. — The best supplication of Arafât.'
+      },
+    ]
+  },
+  {
+    cat:'دعاء السعي · Sa\'î Supplication',
+    icon:'<path d="M2 8h12M10 4l4 4-4 4"/>',
+    items:[
+      {
+        when:'على جبل الصفا والمروة · At Safa and Marwa',
+        arabic:'إِنَّ الصَّفَا وَالْمَرْوَةَ مِنْ شَعَائِرِ اللَّهِ',
+        trans:'Innas-safâ wal-marwata min sha\'â\'irillâh',
+        meaning:'Indeed Safa and Marwa are among the symbols of Allah. (Quran 2:158) — Recited upon beginning the Sa\'î at Safa.'
+      },
+      {
+        when:'على الصفا والمروة · While standing at Safa or Marwa',
+        arabic:'اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، اللَّهُ أَكْبَرُ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، يُحْيِي وَيُمِيتُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ',
+        trans:'Allâhu Akbar (×3), lâ ilâha ill-Allâhu wahdahu lâ sharîka lah, lahul-mulku wa lahul-hamd, yuhyî wa yumîtu wa huwa \'alâ kulli shay\'in qadîr',
+        meaning:'Allah is Greatest (×3). There is no god but Allah alone, His is the dominion and His is the praise, He gives life and causes death, and He has power over all things.'
+      },
+    ]
+  },
+  {
+    cat:'دعاء طواف الوداع · Farewell Tawâf',
+    icon:'<path d="M10 2l4 4-4 4M14 6H6a4 4 0 000 8h1"/>',
+    items:[
+      {
+        when:'عند الملتزم · At the Multazam',
+        arabic:'اللَّهُمَّ الْبَيْتُ بَيْتُكَ، وَالْعَبْدُ عَبْدُكَ، وَأَنَا عَبْدُكَ ابْنُ عَبْدِكَ، حَمَلْتَنِي عَلَى مَا سَخَّرْتَ لِي مِنْ خَلْقِكَ، حَتَّى سَيَّرْتَنِي فِي بِلَادِكَ، وَبَلَّغْتَنِي بِنِعْمَتِكَ حَتَّى أَعَنْتَنِي عَلَى قَضَاءِ مَنَاسِكِكَ',
+        trans:'Allâhummal-baytu baytuk, wal-\'abdu \'abduk, wa anâ \'abduka ibnu \'abdik...',
+        meaning:'O Allah, this House is Your House, and the servant is Your servant. You carried me on what You have subjugated for me of Your creation, and You conveyed me through Your blessing until You helped me complete Your rites.'
+      },
+    ]
+  },
+];
+
+function render(filter) {
+  const cont = document.getElementById('duaContainer');
+  cont.innerHTML = '';
+  let total = 0, visible = 0;
+  DUAS.forEach((cat, ci) => {
+    const filteredItems = filter
+      ? cat.items.filter(d => [d.arabic, d.trans, d.meaning, d.when].join(' ').toLowerCase().includes(filter))
+      : cat.items;
+    if (!filteredItems.length) return;
+    visible += filteredItems.length;
+    total += filteredItems.length;
+    const sec = document.createElement('div');
+    sec.className = 'cat-section';
+    sec.innerHTML = `<div class="cat-head">
+      <div class="cat-icon"><svg viewBox="0 0 16 16" stroke-width="1.6" stroke-linecap="round" fill="none" stroke="currentColor">${cat.icon}</svg></div>
+      <div><div class="cat-title-ar">${cat.cat.split(' · ')[0]}</div><div class="cat-title-fr">${cat.cat.split(' · ')[1]||''}</div></div>
+    </div>`;
+    filteredItems.forEach((d, di) => {
+      const card = document.createElement('div');
+      card.className = 'dua-card';
+      card.style.animationDelay = (ci * .05 + di * .08) + 's';
+      card.dataset.search = [d.arabic, d.trans, d.meaning, d.when].join(' ').toLowerCase();
+      card.innerHTML = `
+        <div class="dua-card-head">
+          <span class="dua-when">${d.when}</span>
+          <button class="dua-copy-btn" onclick="copyDua(event,'${encodeURIComponent(d.arabic)}')">نسخ · Copy</button>
+        </div>
+        <div class="dua-body">
+          <div class="dua-arabic">${d.arabic}</div>
+          <div class="dua-divider"></div>
+          <div class="dua-trans">${d.trans}</div>
+          <div class="dua-meaning">${d.meaning}</div>
+        </div>`;
+      sec.appendChild(card);
+      setTimeout(() => {
+        new IntersectionObserver(es => { es.forEach(e => { if (e.isIntersecting) e.target.classList.add('revealed'); }); }, { threshold: .1 }).observe(card);
+      }, 0);
+    });
+    cont.appendChild(sec);
+  });
+  document.getElementById('noResults').style.display = visible ? 'none' : 'block';
+}
+
+function filterDuas(q) { render(q.trim().toLowerCase() || null); }
+
+function copyDua(e, encoded) {
+  e.stopPropagation();
+  navigator.clipboard.writeText(decodeURIComponent(encoded)).then(() => {
+    const t = document.getElementById('copyToast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2000);
+  });
+}
+
+const html = document.documentElement;
+const stored = localStorage.getItem('theme');
+if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme:dark)').matches)) html.dataset.theme = 'dark';
+function toggleDark() { html.dataset.theme = html.dataset.theme === 'dark' ? 'light' : 'dark'; localStorage.setItem('theme', html.dataset.theme); }
+
+render(null);
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
+</script>
+</body>
+</html>

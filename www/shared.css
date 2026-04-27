@@ -1,0 +1,24 @@
+/* ═══ menesik shared design system ═══ */
+:root {
+  --ink:#1a1108; --ink-inv:#f5f0e6;
+  --gold:#b8860b; --gold-lt:#d4a843; --gold-pale:#fef9ed; --gold-xlt:#fdf3d0;
+  --green:#1b4332; --green-md:#2d6a4f; --green-lt:#d8f0e4; --green-dark:#122b22;
+  --parch:#faf6ec; --parch-dk:#f0e6cc;
+  --surface:#fff; --surface2:#f7f3ea;
+  --border:rgba(184,134,11,.18); --border-md:rgba(184,134,11,.42);
+  --muted:#6b5530; --hint:#a08040;
+  --sidebar-w:220px;
+  --transition: .25s ease;
+}
+[data-theme="dark"] {
+  --ink:#e8e0cc; --ink-inv:#1a1108;
+  --gold:#d4a843; --gold-lt:#e8c060; --gold-pale:rgba(184,134,11,.12); --gold-xlt:rgba(184,134,11,.08);
+  --green:#2d6a4f; --green-md:#3d8a6a; --green-lt:rgba(45,106,79,.25); --green-dark:#1a3d2a;
+  --parch:#1e1a12; --parch-dk:#252018;
+  --surface:#272018; --surface2:#1e1a12;
+  --border:rgba(212,168,67,.15); --border-md:rgba(212,168,67,.3);
+  --muted:#a08860; --hint:#706040;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Naskh Arabic',serif;background:var(--parch);color:var(--ink);line-height:1.85;overflow-x:hidden;transition:background var(--transition),color var(--transition)}

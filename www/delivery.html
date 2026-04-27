@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>menesik — Package Delivery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1c1205;--gold:#b8860b;--gold-lt:#d4a843;--gold-pale:#fef9ed;
+  --green:#1b4332;--green-md:#2d6a4f;--green-lt:#d8f0e4;
+  --parch:#faf6ec;--parch-dk:#f0e6cc;--surface:#fff;
+  --border:rgba(184,134,11,.18);--border-md:rgba(184,134,11,.38);
+  --muted:#6b5530;--hint:#a08040;
+  --blue:#1a4a7a;--blue-bg:#e8f0fb;
+  --red:#8b1a1a;--red-bg:#fdf0f0;
+  --amber:#7a4a10;--amber-bg:#fef4e0;
+  --r-sm:6px;--r-md:10px;--r-lg:14px;--r-xl:20px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--parch);color:var(--ink);overflow-x:hidden;line-height:1.7}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(184,134,11,.04) 59px,rgba(184,134,11,.04) 60px),
+  repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(184,134,11,.04) 59px,rgba(184,134,11,.04) 60px),
+  repeating-linear-gradient(45deg,transparent,transparent 29px,rgba(184,134,11,.02) 29px,rgba(184,134,11,.02) 30px),
+  repeating-linear-gradient(-45deg,transparent,transparent 29px,rgba(184,134,11,.02) 29px,rgba(184,134,11,.02) 30px)}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:var(--green);border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:54px}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-box{width:30px;height:30px;background:var(--gold);border-radius:7px;display:flex;align-items:center;justify-content:center}
+.logo-box svg{width:16px;height:16px}
+.logo-name{font-family:'Amiri',serif;font-size:1.15rem;color:#fff}
+.nav-links{display:flex;gap:2px}
+.nav-links a{font-size:.8rem;color:rgba(255,255,255,.6);padding:6px 11px;text-decoration:none;border-radius:var(--r-sm);border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.nav-links a:hover,.nav-links a.on{color:var(--gold-lt);border-bottom-color:var(--gold-lt)}
+.nav-links a.on{font-weight:500}
+.gh-btn{display:flex;align-items:center;gap:5px;font-size:.75rem;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2);border-radius:var(--r-sm);padding:5px 11px;text-decoration:none;transition:background .15s}
+.gh-btn:hover{background:rgba(255,255,255,.1);color:#fff}
+.gh-btn svg{width:13px;height:13px;fill:currentColor}
+
+/* HERO */
+.hero{position:relative;z-index:1;background:var(--green);padding:3.5rem 1.5rem 3rem;text-align:center;overflow:hidden}
+.hero-circles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-circles span{position:absolute;top:50%;left:50%;border-radius:50%;border:1px solid rgba(255,255,255,.06);transform:translate(-50%,-50%)}
+.hero-circles span:nth-child(1){width:200px;height:200px}
+.hero-circles span:nth-child(2){width:380px;height:380px}
+.hero-circles span:nth-child(3){width:560px;height:560px}
+.hero-tag{display:inline-block;font-size:.73rem;letter-spacing:.1em;color:var(--gold-lt);border:1px solid rgba(212,168,67,.4);border-radius:2rem;padding:.3rem 1rem;margin-bottom:1rem;animation:fd .7s ease both}
+.hero h1{font-family:'Amiri',serif;font-size:clamp(2rem,5vw,3rem);color:#fff;font-weight:700;text-shadow:0 3px 20px rgba(0,0,0,.35);animation:fd .8s .08s ease both;margin-bottom:.4rem}
+.hero-sub{font-size:.9rem;color:rgba(255,255,255,.6);animation:fd .8s .16s ease both;max-width:480px;margin:0 auto 1.5rem}
+.hero-divider{width:100px;height:1px;background:linear-gradient(to right,transparent,var(--gold-lt),transparent);margin:0 auto 1.5rem;animation:fd .8s .22s ease both}
+.hero-stats{display:flex;gap:2.5rem;justify-content:center;flex-wrap:wrap;animation:fd .8s .28s ease both}
+.h-stat-num{font-family:'Amiri',serif;font-size:1.6rem;color:var(--gold-lt);display:block;line-height:1}
+.h-stat-lbl{font-size:.72rem;color:rgba(255,255,255,.5);letter-spacing:.05em;margin-top:2px;display:block}
+
+/* TABS */
+.tab-wrap{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:2rem 1.2rem 5rem}
+.tabs{display:flex;gap:0;background:var(--surface);border:1px solid var(--border-md);border-radius:var(--r-lg);padding:5px;margin-bottom:2rem;animation:fu .5s ease both}
+.tab-btn{flex:1;padding:10px 12px;border:none;background:transparent;border-radius:var(--r-md);font-family:'Inter',sans-serif;font-size:.85rem;color:var(--muted);cursor:pointer;transition:background .18s,color .18s;display:flex;align-items:center;justify-content:center;gap:6px}
+.tab-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.tab-btn.active{background:var(--green);color:#fff;font-weight:500}
+.tab-btn:not(.active):hover{background:var(--parch-dk);color:var(--ink)}
+.panel{display:none}
+.panel.active{display:block;animation:fu .4s ease both}
+
+/* FORM CARDS */
+.form-card{background:var(--surface);border:1px solid var(--border-md);border-radius:var(--r-xl);overflow:hidden;margin-bottom:1.2rem}
+.form-card-head{display:flex;align-items:center;gap:.75rem;background:var(--green);padding:.9rem 1.2rem}
+.form-card-head svg{width:18px;height:18px;stroke:var(--gold-lt);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.form-card-title{font-size:.95rem;font-weight:600;color:#fff}
+.form-card-sub{font-size:.78rem;color:rgba(255,255,255,.55);margin-top:1px}
+.form-card-body{padding:1.3rem}
+.fg{margin-bottom:1rem}
+.fg:last-child{margin-bottom:0}
+.fg label{display:block;font-size:.73rem;font-weight:500;color:var(--muted);margin-bottom:5px;letter-spacing:.05em;text-transform:uppercase}
+.fg input,.fg select,.fg textarea{width:100%;padding:9px 12px;border:1px solid var(--border-md);border-radius:var(--r-md);background:var(--parch);color:var(--ink);font-family:'Inter',sans-serif;font-size:.9rem;outline:none;transition:border-color .15s,box-shadow .15s,background .15s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);background:var(--surface);box-shadow:0 0 0 3px rgba(184,134,11,.1)}
+.fg textarea{resize:vertical;min-height:80px;line-height:1.6}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.fg-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem}
+
+/* PRIORITY */
+.priority-group{display:flex;gap:.5rem;flex-wrap:wrap}
+.p-pill{padding:7px 14px;border-radius:2rem;border:1.5px solid var(--border-md);font-size:.8rem;cursor:pointer;transition:all .15s;background:transparent;color:var(--muted);font-family:'Inter',sans-serif;font-weight:400}
+.p-pill:hover{border-color:var(--gold);color:var(--ink)}
+.p-pill.sel-std{background:var(--blue-bg);border-color:var(--blue);color:var(--blue);font-weight:500}
+.p-pill.sel-exp{background:var(--amber-bg);border-color:var(--gold);color:var(--amber);font-weight:500}
+.p-pill.sel-ovn{background:var(--red-bg);border-color:var(--red);color:var(--red);font-weight:500}
+
+/* SUMMARY */
+.summary-card{background:var(--gold-pale);border:1px solid var(--border-md);border-radius:var(--r-xl);padding:1.3rem;margin-bottom:1.2rem}
+.summary-title{font-size:.73rem;font-weight:600;color:var(--hint);text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem}
+.sum-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px dashed var(--border);font-size:.88rem}
+.sum-row:last-child{border-bottom:none;font-weight:600;font-size:.98rem;color:var(--green);padding-top:12px}
+.sum-label{color:var(--muted)}
+.sum-val{font-weight:500;color:var(--ink)}
+.sum-row:last-child .sum-val{color:var(--green);font-size:1.1rem}
+
+/* SUBMIT */
+.submit-btn{width:100%;padding:14px;background:var(--green);color:#fff;border:none;border-radius:var(--r-lg);font-family:'Inter',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;transition:opacity .15s,transform .1s;letter-spacing:.02em;display:flex;align-items:center;justify-content:center;gap:8px}
+.submit-btn:hover{opacity:.9}
+.submit-btn:active{transform:scale(.99)}
+.submit-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round}
+
+/* TRACKER */
+.track-form{display:flex;gap:.6rem;margin-bottom:1.5rem}
+.track-form input{flex:1;padding:11px 14px;border:1.5px solid var(--border-md);border-radius:var(--r-lg);background:var(--surface);color:var(--ink);font-family:'Inter',sans-serif;font-size:.95rem;outline:none;transition:border-color .15s,box-shadow .15s}
+.track-form input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,134,11,.1)}
+.track-form button{padding:11px 22px;background:var(--green);color:#fff;border:none;border-radius:var(--r-lg);font-family:'Inter',sans-serif;font-size:.88rem;font-weight:500;cursor:pointer;white-space:nowrap;transition:opacity .15s}
+.track-form button:hover{opacity:.88}
+
+.track-result{background:var(--surface);border:1px solid var(--border-md);border-radius:var(--r-xl);overflow:hidden;display:none}
+.track-result.show{display:block;animation:fu .4s ease both}
+.tr-head{background:var(--green);padding:1rem 1.3rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.tr-head-left h3{font-size:1rem;font-weight:600;color:#fff;margin-bottom:2px}
+.tr-head-left p{font-size:.78rem;color:rgba(255,255,255,.55)}
+.status-badge{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:2rem;font-size:.75rem;font-weight:600}
+.status-badge .dot{width:7px;height:7px;border-radius:50%}
+.sb-transit{background:rgba(26,74,122,.3);color:#b5d4f4}
+.sb-transit .dot{background:#378add}
+.sb-delivered{background:rgba(27,67,50,.4);color:#c0dd97}
+.sb-delivered .dot{background:#639922}
+.sb-pending{background:rgba(184,134,11,.2);color:#fac775}
+.sb-pending .dot{background:#ba7517}
+.tr-body{padding:1.3rem}
+.tr-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-bottom:1.3rem}
+.tr-meta-item{background:var(--parch);border-radius:var(--r-md);padding:.8rem}
+.tr-meta-lbl{font-size:.68rem;color:var(--hint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px}
+.tr-meta-val{font-size:.88rem;font-weight:500}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:20px}
+.timeline::before{content:'';position:absolute;left:6px;top:6px;bottom:6px;width:1.5px;background:var(--border-md)}
+.tl-item{position:relative;padding-bottom:1rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{position:absolute;left:-17px;top:3px;width:13px;height:13px;border-radius:50%;border:2px solid var(--surface)}
+.tl-dot.done{background:#639922}
+.tl-dot.active{background:#378add}
+.tl-dot.idle{background:var(--border-md)}
+.tl-date{font-size:.72rem;color:var(--hint);margin-bottom:1px}
+.tl-title{font-size:.88rem;font-weight:500;margin-bottom:1px}
+.tl-title.faded{color:var(--hint);font-weight:400}
+.tl-sub{font-size:.82rem;color:var(--muted)}
+
+/* HELP */
+.help-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.help-card{background:var(--surface);border:1px solid var(--border-md);border-radius:var(--r-xl);padding:1.3rem;transition:border-color .15s}
+.help-card:hover{border-color:var(--gold)}
+.help-icon{width:40px;height:40px;background:var(--gold-pale);border:1px solid var(--border-md);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;margin-bottom:.9rem}
+.help-icon svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.help-title{font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:.3rem}
+.help-desc{font-size:.83rem;color:var(--muted);line-height:1.65}
+.help-link{display:inline-block;margin-top:.7rem;font-size:.78rem;color:var(--green);font-weight:500;text-decoration:none;border-bottom:1px dashed var(--gold)}
+.help-link:hover{color:var(--gold)}
+
+.contact-card{background:var(--green);border-radius:var(--r-xl);padding:1.5rem;color:#fff;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.contact-card svg{width:36px;height:36px;stroke:var(--gold-lt);fill:none;stroke-width:1.4;stroke-linecap:round;flex-shrink:0}
+.contact-card h3{font-size:1rem;font-weight:600;margin-bottom:.2rem}
+.contact-card p{font-size:.83rem;color:rgba(255,255,255,.65)}
+.contact-btns{display:flex;gap:.6rem;margin-top:.8rem;flex-wrap:wrap}
+.c-btn{padding:7px 16px;border-radius:var(--r-md);font-size:.8rem;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity .15s;text-decoration:none;display:inline-block}
+.c-btn-primary{background:var(--gold);color:var(--ink);border:none}
+.c-btn-outline{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.3)}
+.c-btn:hover{opacity:.85}
+
+.steps-list{counter-reset:steps;margin-bottom:1.5rem}
+.step-item{display:flex;gap:1rem;align-items:flex-start;padding:1rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);margin-bottom:.6rem}
+.step-num-box{width:32px;height:32px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;font-weight:600;color:var(--gold-lt);flex-shrink:0}
+.step-content h4{font-size:.9rem;font-weight:600;margin-bottom:2px}
+.step-content p{font-size:.82rem;color:var(--muted);line-height:1.6}
+
+/* FAQ */
+.faq-item{background:var(--surface);border:1px solid var(--border-md);border-radius:var(--r-lg);margin-bottom:.6rem;overflow:hidden}
+.faq-q{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.2rem;cursor:pointer;user-select:none;transition:background .15s}
+.faq-q:hover{background:var(--parch)}
+.faq-q-text{font-size:.92rem;font-weight:500;color:var(--ink)}
+.faq-icon{width:20px;height:20px;border:1.5px solid var(--border-md);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .15s,border-color .15s}
+.faq-icon svg{width:10px;height:10px;stroke:var(--muted);fill:none;stroke-width:2.2;stroke-linecap:round;transition:transform .25s}
+.faq-item.open .faq-icon{background:var(--green);border-color:var(--green)}
+.faq-item.open .faq-icon svg{stroke:#fff;transform:rotate(180deg)}
+.faq-a{display:none;padding:0 1.2rem 1rem;font-size:.86rem;color:var(--muted);line-height:1.75;border-top:1px dashed var(--border)}
+.faq-item.open .faq-a{display:block;padding-top:.8rem;animation:fu .3s ease both}
+.faq-category{font-size:.72rem;font-weight:600;color:var(--hint);text-transform:uppercase;letter-spacing:.08em;margin:1.5rem 0 .6rem}
+.faq-category:first-child{margin-top:0}
+
+/* SUCCESS MODAL */
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;align-items:center;justify-content:center;padding:1rem}
+.modal-bg.open{display:flex}
+.modal{background:var(--surface);border-radius:var(--r-xl);padding:2rem;width:100%;max-width:400px;text-align:center;border:1px solid var(--border-md)}
+.modal-icon{width:60px;height:60px;background:var(--green-lt);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem}
+.modal-icon svg{width:28px;height:28px;stroke:var(--green);fill:none;stroke-width:2;stroke-linecap:round}
+.modal h3{font-family:'Amiri',serif;font-size:1.4rem;margin-bottom:.5rem}
+.modal p{font-size:.88rem;color:var(--muted);margin-bottom:.4rem}
+.modal-track{font-family:monospace;font-size:.82rem;color:var(--green);background:var(--green-lt);padding:.4rem .8rem;border-radius:var(--r-sm);display:inline-block;margin:.5rem 0 1.2rem}
+.modal-close{padding:10px 28px;background:var(--green);color:#fff;border:none;border-radius:var(--r-lg);font-family:'Inter',sans-serif;font-size:.88rem;font-weight:500;cursor:pointer}
+
+/* ORNAMENT DIVIDER */
+.ornament-divider{text-align:center;color:var(--gold);font-size:.9rem;letter-spacing:.5em;margin:1.5rem 0;opacity:.5}
+
+footer{position:relative;z-index:1;text-align:center;padding:1.5rem;font-size:.78rem;color:var(--hint);border-top:1px solid var(--border);background:var(--parch)}
+footer a{color:var(--gold);text-decoration:none}
+
+@keyframes fd{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+@media(max-width:640px){
+  .nav-links{display:none}
+  .help-grid{grid-template-columns:1fr}
+  .tr-meta{grid-template-columns:1fr 1fr}
+  .fg-row,.fg-row3{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <div class="logo-box">
+      <svg viewBox="0 0 16 16" fill="none"><path d="M2 5.5l6-3 6 3v5l-6 3-6-3z" stroke="white" stroke-width="1.3"/><path d="M8 2.5v9M2 5.5l6 3 6-3" stroke="white" stroke-width="1.3"/></svg>
+    </div>
+    <span class="logo-name">menesik</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">🕌 Hajj Guide</a>
+    <a href="#" class="on">📦 Delivery</a>
+    <a href="#help">Help</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <a href="https://github.com/abourdim/menesik" class="gh-btn" target="_blank">
+    <svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    abourdim/menesik
+  </a>
+</nav>
+
+<div class="hero">
+  <div class="hero-circles"><span></span><span></span><span></span><span></span></div>
+  <span class="hero-tag">menesik · Delivery Services</span>
+  <h1>Package Delivery</h1>
+  <p class="hero-sub">Send a package, track your shipment, or get help — all in one place.</p>
+  <div class="hero-divider"></div>
+  <div class="hero-stats">
+    <div class="h-stat"><span class="h-stat-num">3</span><span class="h-stat-lbl">Delivery options</span></div>
+    <div class="h-stat"><span class="h-stat-num">24h</span><span class="h-stat-lbl">Live tracking</span></div>
+    <div class="h-stat"><span class="h-stat-num">✦</span><span class="h-stat-lbl">Secure & insured</span></div>
+  </div>
+</div>
+
+<div class="tab-wrap">
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('send',this)">
+      <svg viewBox="0 0 16 16"><path d="M2 2h12l-2 5H4L2 2z"/><path d="M4 7l1 7h6l1-7"/><path d="M6 10h4"/></svg>
+      Send a Package
+    </button>
+    <button class="tab-btn" onclick="switchTab('track',this)">
+      <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>
+      Track Shipment
+    </button>
+    <button class="tab-btn" onclick="switchTab('help',this)" id="help-tab">
+      <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8 11v.5M8 5a2 2 0 011 3.73c-.5.3-1 .77-1 1.27"/></svg>
+      Help
+    </button>
+    <button class="tab-btn" onclick="switchTab('faq',this)" id="faq-tab">
+      <svg viewBox="0 0 16 16"><path d="M2 3h12v8H9l-3 2v-2H2z"/></svg>
+      FAQ
+    </button>
+  </div>
+
+  <!-- ══ SEND PANEL ══ -->
+  <div class="panel active" id="panel-send">
+
+    <!-- Sender -->
+    <div class="form-card">
+      <div class="form-card-head">
+        <svg viewBox="0 0 18 18"><circle cx="9" cy="6" r="3"/><path d="M3 15c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+        <div><div class="form-card-title">Sender Information</div><div class="form-card-sub">Your details</div></div>
+      </div>
+      <div class="form-card-body">
+        <div class="fg-row">
+          <div class="fg"><label>Full name *</label><input id="sName" type="text" placeholder="Abdelhak Bourdim"></div>
+          <div class="fg"><label>Phone *</label><input id="sPhone" type="tel" placeholder="+33 6 12 34 56 78"></div>
+        </div>
+        <div class="fg"><label>Address *</label><input id="sAddr" type="text" placeholder="12 rue de la Paix"></div>
+        <div class="fg-row3">
+          <div class="fg"><label>City *</label><input id="sCity" type="text" placeholder="Paris"></div>
+          <div class="fg"><label>Postal code</label><input id="sZip" type="text" placeholder="75001"></div>
+          <div class="fg"><label>Country</label>
+            <select id="sCountry">
+              <option>France</option><option>Algeria</option><option>Morocco</option>
+              <option>Tunisia</option><option>Saudi Arabia</option><option>UAE</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recipient -->
+    <div class="form-card">
+      <div class="form-card-head">
+        <svg viewBox="0 0 18 18"><path d="M9 2l1.5 4.5H15l-4 2.5 1.5 4.5L9 11l-3.5 2.5L7 9 3 6.5h4.5z"/></svg>
+        <div><div class="form-card-title">Recipient Information</div><div class="form-card-sub">Where it's going</div></div>
+      </div>
+      <div class="form-card-body">
+        <div class="fg-row">
+          <div class="fg"><label>Full name *</label><input id="rName" type="text" placeholder="Recipient name"></div>
+          <div class="fg"><label>Phone *</label><input id="rPhone" type="tel" placeholder="+966 5 12 34 56 78"></div>
+        </div>
+        <div class="fg"><label>Address *</label><input id="rAddr" type="text" placeholder="Al-Madinah Street"></div>
+        <div class="fg-row3">
+          <div class="fg"><label>City *</label><input id="rCity" type="text" placeholder="Riyadh"></div>
+          <div class="fg"><label>Postal code</label><input id="rZip" type="text" placeholder="11564"></div>
+          <div class="fg"><label>Country</label>
+            <select id="rCountry">
+              <option>Saudi Arabia</option><option>France</option><option>Algeria</option>
+              <option>Morocco</option><option>Tunisia</option><option>UAE</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Package Details -->
+    <div class="form-card">
+      <div class="form-card-head">
+        <svg viewBox="0 0 18 18"><rect x="2" y="6" width="14" height="10" rx="1.5"/><path d="M6 6V4a3 3 0 016 0v2"/><line x1="9" y1="10" x2="9" y2="13"/></svg>
+        <div><div class="form-card-title">Package Details</div><div class="form-card-sub">Size, weight &amp; contents</div></div>
+      </div>
+      <div class="form-card-body">
+        <div class="fg-row">
+          <div class="fg"><label>Description *</label><input id="pDesc" type="text" placeholder="e.g. Books, Clothing, Electronics"></div>
+          <div class="fg"><label>Declared value (€)</label><input id="pVal" type="number" placeholder="150" min="0"></div>
+        </div>
+        <div class="fg-row3">
+          <div class="fg"><label>Weight (kg) *</label><input id="pWeight" type="number" placeholder="2.5" min="0.1" step="0.1"></div>
+          <div class="fg"><label>Length (cm)</label><input id="pL" type="number" placeholder="40"></div>
+          <div class="fg"><label>Width × Height (cm)</label><input id="pWH" type="text" placeholder="30 × 20"></div>
+        </div>
+        <div class="fg"><label>Special instructions</label><textarea id="pNote" placeholder="Fragile, keep upright, do not bend…"></textarea></div>
+      </div>
+    </div>
+
+    <!-- Delivery Priority -->
+    <div class="form-card">
+      <div class="form-card-head">
+        <svg viewBox="0 0 18 18"><path d="M2 9h10M9 5l4 4-4 4"/><path d="M14 9h2"/></svg>
+        <div><div class="form-card-title">Delivery Speed</div><div class="form-card-sub">Choose your service level</div></div>
+      </div>
+      <div class="form-card-body">
+        <div class="priority-group" id="priorityGroup">
+          <button class="p-pill sel-std" onclick="selectPriority(this,'std')">
+            🚚 Standard · 5–8 days · from €12
+          </button>
+          <button class="p-pill" onclick="selectPriority(this,'exp')">
+            ✈️ Express · 2–3 days · from €28
+          </button>
+          <button class="p-pill" onclick="selectPriority(this,'ovn')">
+            ⚡ Overnight · Next day · from €55
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="summary-card">
+      <div class="summary-title">Order Summary</div>
+      <div class="sum-row"><span class="sum-label">Service</span><span class="sum-val" id="sumService">Standard (5–8 days)</span></div>
+      <div class="sum-row"><span class="sum-label">From</span><span class="sum-val" id="sumFrom">—</span></div>
+      <div class="sum-row"><span class="sum-label">To</span><span class="sum-val" id="sumTo">—</span></div>
+      <div class="sum-row"><span class="sum-label">Weight</span><span class="sum-val" id="sumWeight">—</span></div>
+      <div class="sum-row"><span class="sum-label">Insurance</span><span class="sum-val" id="sumIns">Included</span></div>
+      <div class="sum-row"><span class="sum-label">Estimated cost</span><span class="sum-val" id="sumCost">€12.00</span></div>
+    </div>
+
+    <button class="submit-btn" onclick="submitOrder()">
+      <svg viewBox="0 0 18 18"><path d="M2 9h12M10 5l4 4-4 4"/></svg>
+      Submit Delivery Order
+    </button>
+  </div>
+
+  <!-- ══ TRACK PANEL ══ -->
+  <div class="panel" id="panel-track">
+    <div class="track-form">
+      <input type="text" id="trackInput" placeholder="Enter tracking number — e.g. MNS-001-2026-XYZ" onkeydown="if(event.key==='Enter')trackPackage()">
+      <button onclick="trackPackage()">Track →</button>
+    </div>
+
+    <div class="track-result" id="trackResult">
+      <div class="tr-head">
+        <div class="tr-head-left">
+          <h3 id="trName">Sony WH-1000XM5</h3>
+          <p id="trNum">MNS-001-2026-ABC</p>
+        </div>
+        <span class="status-badge sb-transit" id="trBadge"><span class="dot"></span><span id="trStatus">In Transit</span></span>
+      </div>
+      <div class="tr-body">
+        <div class="tr-meta">
+          <div class="tr-meta-item"><div class="tr-meta-lbl">Carrier</div><div class="tr-meta-val" id="trCarrier">—</div></div>
+          <div class="tr-meta-item"><div class="tr-meta-lbl">From</div><div class="tr-meta-val" id="trFrom">—</div></div>
+          <div class="tr-meta-item"><div class="tr-meta-lbl">To</div><div class="tr-meta-val" id="trTo">—</div></div>
+          <div class="tr-meta-item"><div class="tr-meta-lbl">ETA</div><div class="tr-meta-val" id="trEta">—</div></div>
+        </div>
+        <div class="timeline" id="trTimeline"></div>
+      </div>
+    </div>
+
+    <div class="ornament-divider">✦ ✦ ✦</div>
+
+    <div class="form-card" style="margin-bottom:0">
+      <div class="form-card-head">
+        <svg viewBox="0 0 18 18"><rect x="2" y="3" width="14" height="12" rx="1.5"/><path d="M2 7h14"/><path d="M6 3V1M12 3V1"/></svg>
+        <div><div class="form-card-title">Recent Shipments</div><div class="form-card-sub">Saved in this browser</div></div>
+      </div>
+      <div class="form-card-body" id="recentList">
+        <p style="font-size:.85rem;color:var(--hint);text-align:center;padding:.5rem">No recent shipments. Submit a delivery order to get started.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ HELP PANEL ══ -->
+  <div class="panel" id="panel-help" id="help">
+
+    <div class="steps-list">
+      <div class="step-item"><div class="step-num-box">1</div><div class="step-content"><h4>Fill in sender &amp; recipient details</h4><p>Go to the Send tab and enter both addresses. All fields marked * are required. Make sure the phone numbers are reachable.</p></div></div>
+      <div class="step-item"><div class="step-num-box">2</div><div class="step-content"><h4>Describe your package</h4><p>Enter the contents, weight, and approximate dimensions. Accurate weights avoid surcharges. Declare the real value for insurance purposes.</p></div></div>
+      <div class="step-item"><div class="step-num-box">3</div><div class="step-content"><h4>Choose your delivery speed</h4><p>Standard (5–8 days) is most affordable. Express (2–3 days) is ideal for urgent items. Overnight is next-day guaranteed for eligible zones.</p></div></div>
+      <div class="step-item"><div class="step-num-box">4</div><div class="step-content"><h4>Submit &amp; get your tracking number</h4><p>After submission you'll receive a unique tracking number (MNS-XXXX). Use it in the Track tab at any time to see live updates.</p></div></div>
+      <div class="step-item"><div class="step-num-box">5</div><div class="step-content"><h4>Pack &amp; hand over your package</h4><p>A courier will contact you to arrange pickup, or you can drop it at your nearest menesik point. Have your tracking number ready.</p></div></div>
+    </div>
+
+    <div class="help-grid">
+      <div class="help-card">
+        <div class="help-icon"><svg viewBox="0 0 20 20"><path d="M10 2a6 6 0 016 6c0 4-6 10-6 10S4 12 4 8a6 6 0 016-6z"/><circle cx="10" cy="8" r="2"/></svg></div>
+        <div class="help-title">Find a drop-off point</div>
+        <div class="help-desc">Locate your nearest menesik partner drop-off. We have 200+ locations across France, Algeria, and Morocco.</div>
+        <a href="#" class="help-link">Find locations →</a>
+      </div>
+      <div class="help-card">
+        <div class="help-icon"><svg viewBox="0 0 20 20"><rect x="2" y="4" width="16" height="12" rx="2"/><path d="M2 8h16"/><path d="M7 12h2M12 12h2"/></svg></div>
+        <div class="help-title">Payment & pricing</div>
+        <div class="help-desc">We accept card, bank transfer, and cash on pickup. Pricing is calculated by weight, dimensions, and destination zone.</div>
+        <a href="#faq-tab-link" class="help-link" onclick="switchTabById('faq')">See pricing FAQ →</a>
+      </div>
+      <div class="help-card">
+        <div class="help-icon"><svg viewBox="0 0 20 20"><path d="M3 3h14v10H3z"/><path d="M7 17h6M10 13v4"/></svg></div>
+        <div class="help-title">Prohibited items</div>
+        <div class="help-desc">Dangerous goods, liquids over 1L, flammable materials, and counterfeit items cannot be shipped. Full list below.</div>
+        <a href="#" class="help-link">View prohibited list →</a>
+      </div>
+      <div class="help-card">
+        <div class="help-icon"><svg viewBox="0 0 20 20"><path d="M10 2l2 6h6l-5 3.5 2 6L10 14l-5 3.5 2-6L2 8h6z"/></svg></div>
+        <div class="help-title">Insurance & claims</div>
+        <div class="help-desc">All shipments include basic coverage. Premium insurance up to €2,000 is available for fragile or high-value items.</div>
+        <a href="#" class="help-link">Learn about insurance →</a>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <svg viewBox="0 0 36 36"><path d="M4 8h28v20H4z"/><path d="M4 8l14 12L32 8"/></svg>
+      <div style="flex:1">
+        <h3>Need more help?</h3>
+        <p>Our support team is available Sun–Thu, 8am–6pm (GMT+1). Average response time: under 2 hours.</p>
+        <div class="contact-btns">
+          <a href="mailto:support@menesik.com" class="c-btn c-btn-primary">Email support</a>
+          <a href="https://github.com/abourdim/menesik/issues" class="c-btn c-btn-outline" target="_blank">Open GitHub issue</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ FAQ PANEL ══ -->
+  <div class="panel" id="panel-faq" id="faq">
+
+    <div class="faq-category">Shipping & Delivery</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How long does standard delivery take?</span>
+        <div class="faq-icon"><svg viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3"/></svg></div>
+      </div>
+      <div class="faq-a">Standard delivery takes <strong>5–8 business days</strong> for international shipments. For domestic (France) it's typically 2–4 days. Delays may occur during public holidays or high-demand periods such as Hajj season.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can I ship to Saudi Arabia for Hajj?</span>
+        <div class="faq-icon"><svg viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3"/></svg></div>
+      </div>
+      <div class="faq-a">Yes. We offer a dedicated <strong>Hajj season delivery service</strong> to Makkah, Madinah, Jeddah, and surrounding areas. We recommend booking at least 3 weeks in advance during Dhul-Hijja. Express and overnight options are available.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What happens if no one is home at delivery?</span>
+        <div class="faq-icon"><svg viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3"/></svg></div>
+      </div>
+      <div class="faq-a">The carrier will leave a notice and attempt delivery again the next business day. After 2 failed attempts the package is held at your local depot for <strong>7 days</strong>. You'll receive an SMS and email notification at each attempt.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Do you offer weekend delivery?</span>
+        <div class="faq-icon"><svg viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3"/></svg></div>
+      </div>
+      <div class="faq-a">Saturday delivery is available in major cities in France and some Middle East destinations at an additional surcharge. Sunday delivery is not available. Select Express or Overnight to see weekend availability for your route.</div>
+    </div>
+
+    <div class="faq-category">Tracking</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">When will I receive my tracking number?</span>
+        <div class="faq-icon"><svg viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3"/></svg></div>
+      </div>
+      <div class="faq-a">Your tracking number (format: <code style="background:var(--parch);padding:1px 5px;border-radius:3px">MNS-XXXX-YYYY-ZZZ</code>) is generated immediately when you submit your order. It's shown on screen and sent to your email. Tracking becomes active once the package is collected.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">My tracking hasn't updated in 2 days — is that normal?</span>
+        <div class="faq-icon"><svg viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3"/></svg></div>
+      </div>
+      <div class="faq-a">Tracking gaps of 24–48h are common during international transit, especially when passing through customs. If there is no update after <strong>72 hours</strong>, please contact our support team with your tracking number.</div>
+    </div>
+
+    <div class="faq-category">Pricing & Payment</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">How is the shipping cost calculated?</span>
+        <div class="faq-icon"><svg viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3"/></svg></div>
+      </div>
+      <div class="faq-a">Cost is based on the greater of <strong>actual weight</strong> vs <strong>volumetric weight</strong> (L × W × H ÷ 5000). The destination zone, service level (Standard/Express/Overnight), and any declared value for insurance also affect the final price. You'll see an estimate before confirming.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Are there customs duties or taxes?</span>
+        <div class="faq-icon"><svg viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3"/></svg></div>
+      </div>
+      <div class="faq-a">Import duties depend on the destination country and the declared value of the goods. For Saudi Arabia, items under SAR 1,000 are typically duty-free. We provide all required customs documentation, but the recipient is responsible for any applicable duties.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What payment methods do you accept?</span>
+        <div class="faq-icon"><svg viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3"/></svg></div>
+      </div>
+      <div class="faq-a">We accept <strong>Visa / Mastercard</strong>, bank transfer (IBAN), and cash on collection. PayPal is available for orders under €500. Payment is collected at the time of pickup or drop-off unless you have a business account with monthly invoicing.</div>
+    </div>
+
+    <div class="faq-category">Claims & Support</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">What if my package is lost or damaged?</span>
+        <div class="faq-icon"><svg viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3"/></svg></div>
+      </div>
+      <div class="faq-a">Open a claim within <strong>14 days of the delivery date</strong> (or expected date for lost packages). Attach photos of damage and your tracking number. Basic coverage reimburses up to €150. Premium insurance covers up to €2,000. Claims are processed within 5–10 business days.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-q-text">Can I cancel or modify my order?</span>
+        <div class="faq-icon"><svg viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3"/></svg></div>
+      </div>
+      <div class="faq-a">You can cancel or modify your order <strong>free of charge</strong> up to 1 hour before the scheduled pickup. After pickup, address changes may incur a €5 redirection fee. Contact support immediately with your tracking number.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-bg" id="successModal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <div class="modal-icon">
+      <svg viewBox="0 0 28 28"><polyline points="4,14 11,21 24,7"/></svg>
+    </div>
+    <h3>Order Submitted!</h3>
+    <p>Your package delivery order has been received.</p>
+    <p>Your tracking number:</p>
+    <span class="modal-track" id="modalTrackNum">MNS-0001-2026-XYZ</span>
+    <p style="font-size:.8rem;color:var(--hint);margin-bottom:1.2rem">Save this number — you can use it in the Track tab anytime.</p>
+    <button class="modal-close" onclick="closeModal()">Done</button>
+  </div>
+</div>
+
+<footer>
+  <a href="index.html">🕌 Hajj Guide</a> ·
+  <a href="#">📦 Delivery</a> ·
+  <a href="https://github.com/abourdim/menesik" target="_blank">abourdim/menesik ↗</a>
+</footer>
+
+<script>
+let priority = 'std';
+const prices = {std:12,exp:28,ovn:55};
+const labels = {std:'Standard (5–8 days)',exp:'Express (2–3 days)',ovn:'Overnight (Next day)'};
+
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-'+name).classList.add('active');
+}
+function switchTabById(name) {
+  const btn = document.querySelector('.tab-btn[onclick*="\''+name+'\'"]');
+  if(btn) switchTab(name, btn);
+}
+
+function selectPriority(el, p) {
+  document.querySelectorAll('.p-pill').forEach(b=>{b.className='p-pill'});
+  priority = p;
+  el.classList.add('sel-'+p);
+  updateSummary();
+}
+
+function updateSummary() {
+  const sCity = document.getElementById('sCity').value||'—';
+  const sCountry = document.getElementById('sCountry').value;
+  const rCity = document.getElementById('rCity').value||'—';
+  const rCountry = document.getElementById('rCountry').value;
+  const weight = parseFloat(document.getElementById('pWeight').value)||0;
+  const base = prices[priority];
+  const extra = weight>5?(weight-5)*2.5:0;
+  const total = base + extra;
+  document.getElementById('sumService').textContent = labels[priority];
+  document.getElementById('sumFrom').textContent = sCity !== '—' ? sCity+', '+sCountry : '—';
+  document.getElementById('sumTo').textContent = rCity !== '—' ? rCity+', '+rCountry : '—';
+  document.getElementById('sumWeight').textContent = weight>0 ? weight+'kg' : '—';
+  document.getElementById('sumCost').textContent = '€'+total.toFixed(2);
+}
+
+['sCity','sCountry','rCity','rCountry','pWeight'].forEach(id=>{
+  document.getElementById(id).addEventListener('change',updateSummary);
+  document.getElementById(id).addEventListener('input',updateSummary);
+});
+
+let orderCount = parseInt(localStorage.getItem('mnsk_order_count')||'0');
+let orders = JSON.parse(localStorage.getItem('mnsk_orders')||'[]');
+
+function submitOrder() {
+  const sName = document.getElementById('sName').value.trim();
+  const rName = document.getElementById('rName').value.trim();
+  const rCity = document.getElementById('rCity').value.trim();
+  const rCountry = document.getElementById('rCountry').value;
+  const pDesc = document.getElementById('pDesc').value.trim();
+  if(!sName||!rName||!rCity||!pDesc) {
+    alert('Please fill in all required fields (*).');
+    return;
+  }
+  orderCount++;
+  const trackNum = 'MNS-'+String(orderCount).padStart(4,'0')+'-2026-'+Math.random().toString(36).slice(2,5).toUpperCase();
+  const order = {trackNum, name:pDesc, from:document.getElementById('sCity').value+', '+document.getElementById('sCountry').value, to:rCity+', '+rCountry, status:'pending', eta: getEta(), carrier:'menesik Express'};
+  orders.unshift(order);
+  localStorage.setItem('mnsk_order_count', orderCount);
+  localStorage.setItem('mnsk_orders', JSON.stringify(orders));
+  document.getElementById('modalTrackNum').textContent = trackNum;
+  document.getElementById('successModal').classList.add('open');
+  renderRecent();
+}
+
+function getEta() {
+  const d = new Date();
+  const days = priority==='std'?7:priority==='exp'?3:1;
+  d.setDate(d.getDate()+days);
+  return d.toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+}
+
+function closeModal() {
+  document.getElementById('successModal').classList.remove('open');
+}
+
+function renderRecent() {
+  const el = document.getElementById('recentList');
+  if(!orders.length){el.innerHTML='<p style="font-size:.85rem;color:var(--hint);text-align:center;padding:.5rem">No recent shipments.</p>';return;}
+  el.innerHTML = orders.slice(0,5).map(o=>`
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px dashed rgba(184,134,11,.15);gap:1rem;font-size:.85rem;cursor:pointer" onclick="quickTrack('${o.trackNum}')">
+      <div>
+        <div style="font-weight:500">${o.name}</div>
+        <div style="font-size:.75rem;color:var(--hint);font-family:monospace">${o.trackNum}</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:.75rem;color:var(--muted)">${o.to}</div>
+        <div style="font-size:.72rem;color:var(--hint)">ETA ${o.eta}</div>
+      </div>
+    </div>`).join('');
+}
+
+function quickTrack(num) {
+  switchTabById('track');
+  document.getElementById('trackInput').value = num;
+  trackPackage();
+}
+
+const demoOrders = {
+  'MNS-DEMO-001':{name:'Sony WH-1000XM5',carrier:'UPS',from:'Paris, France',to:'Riyadh, Saudi Arabia',status:'in transit',eta:'Apr 18, 2026',events:[
+    {t:'Apr 7',title:'Order placed',sub:'Confirmed by seller',s:'done'},
+    {t:'Apr 8',title:'Picked up',sub:'Package collected by carrier',s:'done'},
+    {t:'Apr 10',title:'In transit',sub:'Arrived at hub — Frankfurt, DE',s:'active'},
+    {t:'',title:'Out for delivery',sub:'',s:'idle'},
+    {t:'',title:'Delivered',sub:'',s:'idle'}
+  ]},
+  'MNS-DEMO-002':{name:'Mechanical keyboard',carrier:'DHL',from:'New York, US',to:'Paris, France',status:'delivered',eta:'Apr 9, 2026',events:[
+    {t:'Apr 4',title:'Order placed',sub:'',s:'done'},
+    {t:'Apr 5',title:'Picked up',sub:'',s:'done'},
+    {t:'Apr 6',title:'In transit',sub:'Arrived CDG hub',s:'done'},
+    {t:'Apr 8',title:'Out for delivery',sub:'',s:'done'},
+    {t:'Apr 9',title:'Delivered',sub:'Left at front door',s:'done'}
+  ]}
+};
+
+function trackPackage() {
+  const num = document.getElementById('trackInput').value.trim().toUpperCase();
+  if(!num){alert('Please enter a tracking number.');return;}
+  const result = document.getElementById('trackResult');
+  let data = demoOrders[num];
+  if(!data){
+    const found = orders.find(o=>o.trackNum===num);
+    if(found){
+      data={name:found.name,carrier:found.carrier||'menesik Express',from:found.from,to:found.to,status:found.status,eta:found.eta,events:[
+        {t:'Today',title:'Order submitted',sub:'Awaiting pickup',s:'done'},
+        {t:'',title:'Pickup scheduled',sub:'',s:'active'},
+        {t:'',title:'In transit',sub:'',s:'idle'},
+        {t:'',title:'Out for delivery',sub:'',s:'idle'},
+        {t:'',title:'Delivered',sub:'',s:'idle'}
+      ]};
+    }
+  }
+  if(!data){alert('Tracking number not found. Try MNS-DEMO-001 or MNS-DEMO-002 as demo.');return;}
+  document.getElementById('trName').textContent = data.name;
+  document.getElementById('trNum').textContent = num;
+  document.getElementById('trCarrier').textContent = data.carrier;
+  document.getElementById('trFrom').textContent = data.from;
+  document.getElementById('trTo').textContent = data.to;
+  document.getElementById('trEta').textContent = data.eta;
+  const sc = data.status==='in transit'?'transit':data.status==='delivered'?'delivered':'pending';
+  document.getElementById('trBadge').className='status-badge sb-'+sc;
+  document.getElementById('trStatus').textContent = data.status.charAt(0).toUpperCase()+data.status.slice(1);
+  document.getElementById('trTimeline').innerHTML = data.events.map((e,i)=>{
+    const last=i===data.events.length-1;
+    return `<div class="tl-item">
+      <div class="tl-dot ${e.s}"></div>
+      ${e.t?`<div class="tl-date">${e.t}</div>`:''}
+      <div class="tl-title${e.s==='idle'?' faded':''}">${e.title}</div>
+      ${e.sub?`<div class="tl-sub">${e.sub}</div>`:''}
+    </div>`;
+  }).join('');
+  result.classList.add('show');
+  result.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function toggleFaq(el) {
+  el.closest('.faq-item').classList.toggle('open');
+}
+
+renderRecent();
+</script>
+</body>
+</html>

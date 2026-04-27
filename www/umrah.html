@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مناسك العمرة — Guide de la Umrah · menesik</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1b4332">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a1108;--gold:#b8860b;--gold-lt:#d4a843;--gold-pale:#fef9ed;--gold-xlt:#fdf3d0;--green:#1b4332;--green-md:#2d6a4f;--green-lt:#d8f0e4;--green-dark:#122b22;--parch:#faf6ec;--parch-dk:#f0e6cc;--surface:#fff;--surface2:#f7f3ea;--border:rgba(184,134,11,.18);--border-md:rgba(184,134,11,.42);--muted:#6b5530;--hint:#a08040;}
+[data-theme="dark"]{--ink:#e8e0cc;--gold:#d4a843;--gold-lt:#e8c060;--gold-pale:rgba(184,134,11,.1);--gold-xlt:rgba(184,134,11,.07);--green:#2d6a4f;--green-md:#3d8a6a;--green-lt:rgba(45,106,79,.2);--green-dark:#0e2318;--parch:#181410;--parch-dk:#201c14;--surface:#232018;--surface2:#1a1710;--border:rgba(212,168,67,.14);--border-md:rgba(212,168,67,.28);--muted:#a08860;--hint:#604a28;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Naskh Arabic',serif;background:var(--parch);color:var(--ink);line-height:1.85;overflow-x:hidden;transition:background .3s,color .3s}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='rgba(184,134,11,0.06)' stroke-width='0.6'%3E%3Cpolygon points='40,5 47,25 68,25 52,38 58,58 40,46 22,58 28,38 12,25 33,25'/%3E%3Crect x='15' y='15' width='50' height='50' transform='rotate(22.5 40 40)'/%3E%3Ccircle cx='40' cy='40' r='20'/%3E%3C/g%3E%3C/svg%3E");background-size:80px 80px}
+
+.topbar{position:sticky;top:0;z-index:50;background:rgba(18,43,34,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(184,134,11,.2);display:flex;align-items:center;height:50px;padding:0 1rem;gap:.5rem}
+.page-links{display:flex;gap:2px}
+.page-links a{padding:.35rem .7rem;font-size:.76rem;color:rgba(255,255,255,.5);text-decoration:none;border-radius:6px;white-space:nowrap;transition:background .15s,color .15s}
+.page-links a:hover{background:rgba(212,168,67,.15);color:var(--gold-lt)}
+.page-links a.current{background:rgba(212,168,67,.2);color:var(--gold-lt);font-weight:500}
+.tb-right{margin-right:0;margin-left:auto;display:flex;gap:.4rem}
+.ctrl-btn{width:32px;height:32px;background:rgba(255,255,255,.07);border:1px solid rgba(184,134,11,.25);border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:.75rem;text-decoration:none}
+.ctrl-btn:hover{background:rgba(184,134,11,.2)}
+.ctrl-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round}
+
+.hero{position:relative;z-index:2;background:var(--green-dark);padding:4rem 1.5rem 3.5rem;text-align:center;overflow:hidden}
+.hero-ring{position:absolute;border-radius:50%;border:1px solid rgba(184,134,11,.1);top:50%;left:50%;transform:translate(-50%,-50%);animation:pulse 6s ease-in-out infinite}
+.hero-ring:nth-child(1){width:200px;height:200px}
+.hero-ring:nth-child(2){width:380px;height:380px;animation-delay:1s}
+.hero-ring:nth-child(3){width:580px;height:580px;animation-delay:2s}
+@keyframes pulse{0%,100%{opacity:.4;transform:translate(-50%,-50%) scale(1)}50%{opacity:.9;transform:translate(-50%,-50%) scale(1.04)}}
+.bismillah{font-family:'Amiri',serif;font-size:clamp(1.3rem,3.5vw,2rem);color:var(--gold-lt);display:block;margin-bottom:1rem;animation:sd .8s ease both}
+.hero h1{font-family:'Amiri',serif;font-size:clamp(2.2rem,6vw,3.8rem);font-weight:700;color:#fff;text-shadow:0 4px 28px rgba(0,0,0,.5);line-height:1.2;animation:sd .9s .1s ease both;margin-bottom:.5rem}
+.hero-ornament{color:var(--gold-lt);font-size:1.2rem;letter-spacing:.6em;display:block;margin:.7rem 0;animation:sd .9s .2s ease both}
+.hero-fr{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1rem,2.5vw,1.5rem);color:rgba(255,255,255,.65);direction:ltr;animation:sd .9s .25s ease both;margin-bottom:1.5rem}
+.hero-divider{width:120px;height:1px;background:linear-gradient(to right,transparent,var(--gold-lt),transparent);margin:0 auto 1.5rem;animation:sd .9s .3s ease both}
+.hero-pills{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap;animation:sd .9s .35s ease both}
+.pill{padding:.32rem .9rem;border:1px solid rgba(212,168,67,.4);border-radius:2rem;font-size:.74rem;color:rgba(255,255,255,.7);letter-spacing:.06em}
+@keyframes sd{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:none}}
+
+.source-banner{position:relative;z-index:2;background:var(--green-md);border-bottom:2px solid var(--gold);padding:.6rem 1.5rem;display:flex;align-items:center;justify-content:center;gap:.6rem;flex-wrap:wrap}
+.source-banner svg{width:15px;height:15px;fill:rgba(255,255,255,.7);flex-shrink:0}
+.source-text{font-size:.76rem;color:rgba(255,255,255,.65)}
+.source-link{font-size:.76rem;color:var(--gold-lt);font-weight:600;text-decoration:none;border-bottom:1px dashed rgba(212,168,67,.5);direction:ltr}
+.source-link:hover{color:#fff}
+
+main{position:relative;z-index:2;max-width:900px;margin:0 auto;padding:2rem 1.2rem 5rem}
+
+/* STEPS FLOW */
+.steps-flow{display:flex;flex-direction:column;gap:0}
+.step-card{display:flex;gap:1.2rem;padding:1.5rem 0;border-bottom:1px solid var(--border);align-items:flex-start;animation:su .5s ease both;opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s}
+.step-card.revealed{opacity:1;transform:none}
+.step-card:last-child{border-bottom:none}
+.step-left{display:flex;flex-direction:column;align-items:center;gap:0;flex-shrink:0}
+.step-num{width:44px;height:44px;border-radius:50%;background:var(--green);border:2px solid var(--gold-lt);display:flex;align-items:center;justify-content:center;font-family:'Amiri',serif;font-size:1.2rem;color:var(--gold-lt);flex-shrink:0}
+.step-line{width:2px;flex:1;min-height:20px;background:linear-gradient(to bottom,var(--border-md),transparent);margin-top:4px}
+.step-right{flex:1;padding-bottom:.5rem}
+.step-title-ar{font-family:'Amiri',serif;font-size:1.25rem;font-weight:700;color:var(--green);margin-bottom:3px}
+.step-title-fr{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.92rem;color:var(--muted);direction:ltr;margin-bottom:.7rem}
+.step-desc{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.step-col-ar{direction:rtl}
+.step-col-fr{direction:ltr}
+.step-col-lbl{font-size:.66rem;letter-spacing:.1em;color:var(--hint);text-transform:uppercase;margin-bottom:.35rem;display:block}
+.item-list{list-style:none;padding:0}
+.item-list li{display:flex;gap:7px;padding:5px 0;border-bottom:1px dashed var(--border);font-size:.88rem;line-height:1.65;align-items:flex-start}
+.item-list li:last-child{border-bottom:none}
+.item-list li::before{content:'◆';color:var(--gold);font-size:.44rem;margin-top:.55rem;flex-shrink:0}
+.step-note{margin-top:.7rem;padding:.7rem .9rem;background:var(--gold-pale);border-right:3px solid var(--gold);border-radius:0 8px 8px 0;font-size:.85rem;color:var(--muted);line-height:1.75;transition:background .3s}
+
+/* TALBIYA */
+.talbiya-box{background:var(--gold-pale);border:1px solid var(--border-md);border-radius:14px;padding:1.5rem;text-align:center;margin:2rem 0;transition:background .3s}
+.talbiya-box::before{content:'✦ ✦ ✦';display:block;color:var(--gold);letter-spacing:.5em;font-size:.9rem;margin-bottom:1rem}
+.talbiya-ar{font-family:'Amiri',serif;font-size:clamp(1rem,3vw,1.5rem);font-style:italic;color:var(--green);line-height:2}
+.talbiya-ornament{display:block;color:var(--gold);letter-spacing:.5em;font-size:.85rem;margin:.6rem 0}
+.talbiya-fr{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.95rem;color:var(--muted);direction:ltr;line-height:1.85}
+
+/* DIFF TABLE */
+.diff-section{margin:2rem 0}
+.diff-title{font-family:'Amiri',serif;font-size:1.2rem;font-weight:700;color:var(--green);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+.diff-title::after{content:'';flex:1;height:1px;background:var(--border-md)}
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.diff-card{border-radius:12px;padding:1.1rem;border:1px solid var(--border-md)}
+.diff-card.umrah{background:linear-gradient(135deg,#e8f5e9,#d8f0e4)}
+.diff-card.hajj{background:linear-gradient(135deg,var(--gold-pale),var(--gold-xlt))}
+.diff-card-title{font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:.7rem}
+.diff-card.umrah .diff-card-title{color:var(--green)}
+.diff-card.hajj .diff-card-title{color:var(--gold)}
+.diff-item{display:flex;gap:.5rem;align-items:flex-start;padding:4px 0;font-size:.85rem;line-height:1.6;border-bottom:1px dashed var(--border)}
+.diff-item:last-child{border-bottom:none}
+.diff-item::before{content:'✓';font-size:.75rem;margin-top:.15rem;flex-shrink:0}
+.diff-card.umrah .diff-item::before{color:var(--green)}
+.diff-card.hajj .diff-item::before{color:var(--gold)}
+
+.dua-section{position:relative;z-index:2;background:var(--green-dark);color:#fff;text-align:center;padding:3rem 1.5rem;overflow:hidden}
+.dua-section::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='rgba(184,134,11,0.07)' stroke-width='0.6'%3E%3Cpolygon points='40,5 47,25 68,25 52,38 58,58 40,46 22,58 28,38 12,25 33,25'/%3E%3C/g%3E%3C/svg%3E");background-size:80px 80px;pointer-events:none}
+.dua-ornament{color:var(--gold-lt);font-size:1.1rem;letter-spacing:.6em;display:block;margin-bottom:1rem;position:relative}
+.dua-ar{font-family:'Amiri',serif;font-size:clamp(1.1rem,3vw,1.6rem);font-style:italic;line-height:2.1;color:#fff;position:relative}
+.dua-fr{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:rgba(255,255,255,.6);margin-top:.6rem;direction:ltr;position:relative}
+footer{position:relative;z-index:2;background:var(--green-dark);border-top:1px solid rgba(184,134,11,.2);padding:1.5rem;text-align:center}
+.footer-logo{font-family:'Amiri',serif;font-size:1.3rem;color:var(--gold-lt);display:block;margin-bottom:.5rem}
+.footer-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:.6rem}
+.footer-links a{font-size:.76rem;color:rgba(255,255,255,.4);text-decoration:none;transition:color .15s}
+.footer-links a:hover{color:var(--gold-lt)}
+.footer-copy{font-size:.7rem;color:rgba(255,255,255,.2)}
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:70;background:rgba(18,43,34,.97);backdrop-filter:blur(12px);border-top:1px solid rgba(184,134,11,.2);padding:.45rem 0 .35rem}
+.mobile-nav-inner{display:flex;justify-content:space-around}
+.mn-btn{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;cursor:pointer;padding:.3rem .4rem;color:rgba(255,255,255,.45);font-family:'Noto Naskh Arabic',serif;font-size:.6rem;transition:color .15s;text-decoration:none}
+.mn-btn:hover,.mn-btn.mn-on{color:var(--gold-lt)}
+.mn-btn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+@keyframes su{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@media(max-width:640px){.step-desc,.diff-grid{grid-template-columns:1fr}.step-col-fr{direction:rtl}.mobile-nav{display:block}main{padding-bottom:5rem}}
+@media print{.topbar,.source-banner,.mobile-nav,footer{display:none!important}body::before{display:none}main{padding:1rem}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="page-links">
+    <a href="index.html">🕌 الحج</a>
+    <a href="umrah.html" class="current">🌙 العمرة</a>
+    <a href="checklist.html">✅ قائمة</a>
+    <a href="dua.html">🤲 أدعية</a>
+  </div>
+  <div class="tb-right">
+    <button class="ctrl-btn" onclick="toggleDark()" title="Dark mode"><svg viewBox="0 0 16 16" id="di"><path d="M17 13A7 7 0 116 3a5 5 0 0011 10z"/></svg></button>
+    <button class="ctrl-btn" onclick="window.print()" title="Print"><svg viewBox="0 0 16 16"><path d="M4 6V2h8v4"/><rect x="4" y="11" width="8" height="4"/><path d="M4 11H2a1 1 0 01-1-1V7a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-1 1h-2"/></svg></button>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-ring"></div><div class="hero-ring"></div><div class="hero-ring"></div>
+  <span class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</span>
+  <h1>مناسك العمرة</h1>
+  <span class="hero-ornament">✦ ✦ ✦</span>
+  <p class="hero-fr">Guide complet de la Umrah · Complete Umrah Guide</p>
+  <div class="hero-divider"></div>
+  <div class="hero-pills">
+    <span class="pill">العربية</span><span class="pill">Français</span><span class="pill">English</span><span class="pill">٤ مناسك</span>
+  </div>
+</div>
+
+<div class="source-banner">
+  <svg viewBox="0 0 24 24"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+  <span class="source-text">المصدر — Source :</span>
+  <a class="source-link" href="https://www.youtube.com/watch?v=kw3UHpoJzuQ" target="_blank" rel="noopener">مناسك الحج بالترتيب والتفصيل كاملة — YouTube ↗</a>
+</div>
+
+<main>
+
+<div class="talbiya-box">
+  <p class="talbiya-ar">«لبيك اللهم لبيك، لبيك لا شريك لك لبيك، إن الحمد والنعمة لك والملك، لا شريك لك»</p>
+  <span class="talbiya-ornament">✦ ✦ ✦</span>
+  <p class="talbiya-fr">«Here I am O Allah, here I am. You have no partner. Yours is the praise, the blessing, and the dominion.»</p>
+</div>
+
+<div class="steps-flow">
+
+  <div class="step-card" id="s1">
+    <div class="step-left"><div class="step-num">١</div><div class="step-line"></div></div>
+    <div class="step-right">
+      <div class="step-title-ar">الإحرام — بداية العمرة</div>
+      <div class="step-title-fr">L'Ihrâm — Entering the state of consecration</div>
+      <div class="step-desc">
+        <div class="step-col-ar"><span class="step-col-lbl">العربية</span>
+          <ul class="item-list">
+            <li>الاغتسال والتطيب قبل الإحرام</li>
+            <li>لبس ثوبَي الإحرام للرجل</li>
+            <li>المرأة تلبس ما شاءت بلا نقاب</li>
+            <li>صلاة ركعتَي الإحرام</li>
+            <li>النية: «لبيك اللهم عمرة»</li>
+            <li>التلبية حتى الطواف</li>
+          </ul>
+        </div>
+        <div class="step-col-fr"><span class="step-col-lbl" style="direction:ltr">EN / FR</span>
+          <ul class="item-list" style="direction:ltr">
+            <li>Bathe and apply perfume before ihrâm</li>
+            <li>Men: wear two white unsewn cloths</li>
+            <li>Women: modest clothing, no niqâb</li>
+            <li>Pray two rak'ahs</li>
+            <li>Intention: «Labbayk Allâhumma 'Umratan»</li>
+            <li>Recite talbiyah until reaching the Ka'bah</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-note">الميقات للعمرة: التنعيم لمن في مكة — Mîqât for Umrah from Makkah: al-Tan'îm (Masjid A'isha)</div>
+    </div>
+  </div>
+
+  <div class="step-card" id="s2">
+    <div class="step-left"><div class="step-num">٢</div><div class="step-line"></div></div>
+    <div class="step-right">
+      <div class="step-title-ar">الطواف — ٧ أشواط حول الكعبة</div>
+      <div class="step-title-fr">Le Tawâf — 7 circuits autour de la Ka'bah · 7 Circuits around the Ka'bah</div>
+      <div class="step-desc">
+        <div class="step-col-ar"><span class="step-col-lbl">العربية</span>
+          <ul class="item-list">
+            <li>البدء بالحجر الأسود — التكبير والاستلام</li>
+            <li>٧ أشواط عكس اتجاه عقارب الساعة</li>
+            <li>الاضطباع للرجال في الأشواط الثلاثة الأولى</li>
+            <li>الرَّمَل في الأشواط الثلاثة الأولى للرجال</li>
+            <li>الدعاء في كل شوط وعند الأركان</li>
+            <li>«ربنا آتنا في الدنيا حسنة» عند الركن اليماني</li>
+            <li>الختم باستلام الحجر الأسود والتكبير</li>
+          </ul>
+        </div>
+        <div class="step-col-fr"><span class="step-col-lbl" style="direction:ltr">EN / FR</span>
+          <ul class="item-list" style="direction:ltr">
+            <li>Begin at the Black Stone — say takbîr and touch/gesture</li>
+            <li>7 circuits counter-clockwise</li>
+            <li>Men: expose right shoulder (idtibâ') for first 3 circuits</li>
+            <li>Men: walk briskly (raml) for first 3 circuits</li>
+            <li>Supplicate throughout and at each corner</li>
+            <li>Say «Rabbanâ âtinâ fid-dunyâ hasanah» at Yemeni corner</li>
+            <li>End at the Black Stone with takbîr</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-note">بعد الطواف: صلاة ركعتين خلف مقام إبراهيم — After tawâf: pray 2 rak'ahs behind Maqâm Ibrâhîm</div>
+    </div>
+  </div>
+
+  <div class="step-card" id="s3">
+    <div class="step-left"><div class="step-num">٣</div><div class="step-line"></div></div>
+    <div class="step-right">
+      <div class="step-title-ar">السعي — ٧ أشواط بين الصفا والمروة</div>
+      <div class="step-title-fr">Le Sa'î — 7 parcours entre Safa et Marwa · Walking between Safa & Marwa</div>
+      <div class="step-desc">
+        <div class="step-col-ar"><span class="step-col-lbl">العربية</span>
+          <ul class="item-list">
+            <li>البدء من الصفا ﴿إِنَّ الصَّفَا وَالْمَرْوَةَ…﴾</li>
+            <li>٧ أشواط: الصفا→المروة شوط واحد</li>
+            <li>الهرولة للرجال بين العلمَين الأخضرَين</li>
+            <li>الدعاء والذكر في كل شوط</li>
+            <li>الانتهاء على المروة</li>
+          </ul>
+        </div>
+        <div class="step-col-fr"><span class="step-col-lbl" style="direction:ltr">EN / FR</span>
+          <ul class="item-list" style="direction:ltr">
+            <li>Begin at Safa — recite the Quranic verse</li>
+            <li>7 laps: Safa→Marwa counts as one lap</li>
+            <li>Men: jog between the two green markers</li>
+            <li>Supplicate and remember Allah throughout</li>
+            <li>End at Marwa</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-card" id="s4">
+    <div class="step-left"><div class="step-num">٤</div></div>
+    <div class="step-right">
+      <div class="step-title-ar">الحلق أو التقصير — التحلل من الإحرام</div>
+      <div class="step-title-fr">Rasage ou raccourcissement — Fin de l'état d'Ihrâm · Shaving or cutting — End of Ihrâm</div>
+      <div class="step-desc">
+        <div class="step-col-ar"><span class="step-col-lbl">العربية</span>
+          <ul class="item-list">
+            <li>حلق الرأس كاملاً (أفضل للرجال)</li>
+            <li>أو تقصير الشعر من جميع الجهات</li>
+            <li>المرأة تقص قدر أنملة فأكثر</li>
+            <li>بعده يحل كل ما حرم بالإحرام</li>
+          </ul>
+        </div>
+        <div class="step-col-fr"><span class="step-col-lbl" style="direction:ltr">EN / FR</span>
+          <ul class="item-list" style="direction:ltr">
+            <li>Shave the entire head (preferred for men)</li>
+            <li>Or shorten hair evenly all around</li>
+            <li>Women: cut a fingertip's length or more</li>
+            <li>After this: all ihrâm restrictions are lifted</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-note">تمت العمرة بفضل الله وتوفيقه · La Umrah est accomplie, qu'Allah l'accepte · Umrah is complete — may Allah accept it!</div>
+    </div>
+  </div>
+</div>
+
+<!-- DIFF SECTION -->
+<div class="diff-section">
+  <div class="diff-title">الفرق بين العمرة والحج · Umrah vs Hajj</div>
+  <div class="diff-grid">
+    <div class="diff-card umrah">
+      <div class="diff-card-title">العمرة — Umrah</div>
+      <div class="diff-item">في أي وقت من العام · Any time of year</div>
+      <div class="diff-item">٤ مناسك فقط · Only 4 rites</div>
+      <div class="diff-item">لا وقوف بعرفة · No station at Arafât</div>
+      <div class="diff-item">لا مبيت في منى · No stay in Minâ</div>
+      <div class="diff-item">لا رمي جمرات · No stoning</div>
+      <div class="diff-item">تستغرق ساعات · Takes a few hours</div>
+      <div class="diff-item">سنة مؤكدة · Confirmed Sunnah</div>
+    </div>
+    <div class="diff-card hajj">
+      <div class="diff-card-title">الحج — Hajj</div>
+      <div class="diff-item">ذو الحجة فقط · Only in Dhul-Hijja</div>
+      <div class="diff-item">٨ مناسك · 8 rites</div>
+      <div class="diff-item">وقوف بعرفة (ركن) · Arafât station (pillar)</div>
+      <div class="diff-item">مبيت في منى ومزدلفة · Nights in Minâ & Muzdalifa</div>
+      <div class="diff-item">رمي الجمرات · Stoning the Jamarat</div>
+      <div class="diff-item">يستغرق ٥+ أيام · Takes 5+ days</div>
+      <div class="diff-item">فريضة (مرة في العمر) · Obligatory once</div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<div class="dua-section">
+  <span class="dua-ornament">❧ ✦ ❧</span>
+  <p class="dua-ar">تقبّل الله منكم وأتمنى لكم عمرة مبرورة وذنباً مغفوراً</p>
+  <p class="dua-fr">May Allah accept your Umrah and forgive your sins · Qu'Allah accepte votre Umrah</p>
+</div>
+
+<footer>
+  <span class="footer-logo">menesik</span>
+  <div class="footer-links">
+    <a href="index.html">🕌 الحج</a><a href="checklist.html">✅ Checklist</a><a href="dua.html">🤲 Duas</a>
+    <a href="https://github.com/abourdim/menesik" target="_blank">GitHub ↗</a>
+    <a href="https://www.youtube.com/watch?v=kw3UHpoJzuQ" target="_blank">Source ↗</a>
+  </div>
+  <div class="footer-copy">© 2026 abourdim · menesik · MIT License</div>
+</footer>
+
+<nav class="mobile-nav"><div class="mobile-nav-inner">
+  <a class="mn-btn" href="index.html"><svg viewBox="0 0 20 20"><path d="M10 2l2 6h6l-5 3.5 2 6L10 14l-5 3.5 2-6L2 8h6z"/></svg>الحج</a>
+  <a class="mn-btn mn-on" href="umrah.html"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l2 2"/></svg>العمرة</a>
+  <a class="mn-btn" href="checklist.html"><svg viewBox="0 0 20 20"><path d="M4 10l4 4 8-8"/><rect x="1" y="1" width="18" height="18" rx="3"/></svg>قائمة</a>
+  <a class="mn-btn" href="dua.html"><svg viewBox="0 0 20 20"><path d="M10 2c-4 0-7 2.5-7 6s2.5 5 4 6l3 2 3-2c1.5-1 4-2.5 4-6s-3-6-7-6z"/></svg>أدعية</a>
+  <button class="mn-btn" onclick="toggleDark()"><svg viewBox="0 0 20 20"><path d="M17 13A7 7 0 116 3a5 5 0 0011 10z"/></svg>وضع</button>
+</div></nav>
+
+<script>
+const html=document.documentElement;
+const stored=localStorage.getItem('theme');
+if(stored==='dark'||(!stored&&window.matchMedia('(prefers-color-scheme:dark)').matches))html.dataset.theme='dark';
+function toggleDark(){html.dataset.theme=html.dataset.theme==='dark'?'light':'dark';localStorage.setItem('theme',html.dataset.theme)}
+document.querySelectorAll('.step-card').forEach((s,i)=>{
+  s.style.animationDelay=i*.1+'s';
+  new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('revealed')})},{threshold:.12}).observe(s);
+});
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script>
+</body>
+</html>
